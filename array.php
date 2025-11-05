@@ -14,7 +14,7 @@
 
     .struk {
         background-color: white;
-        width: 320px;
+        width: 400px;
         padding: 20px;
         border: 1px dashed #000;
         box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -32,7 +32,7 @@
     }
 
     td {
-        padding: 4px 3px;
+        padding: 5px 10px;
         vertical-align: top;
     }
 
@@ -40,15 +40,16 @@
         text-align: right;
     }
 
-    .right {
+    .center{
         text-align: center;
     }
 
     /* Lebar kolom agar sejajar */
-    td:nth-child(1) { width: 40%; } /* Nama barang */
-    td:nth-child(2) { width: 15%; } /* Qty */
-    td:nth-child(3) { width: 15%; } /* Harga */
-    td:nth-child(4) { width: 30%; } /* Total */
+    td:nth-child(1) { width: 30%; } /* Nama barang */
+    td:nth-child(2) { width: 15%; } /* Kode */
+    td:nth-child(3) { width: 10%; } /* Qty */
+    td:nth-child(4) { width: 20%; } /* Harga */
+    td:nth-child(5) { width: 25%; } /* Total */
 
     /* Tambahan untuk merapikan posisi Rp */
     .rupiah {
@@ -101,6 +102,20 @@ $nama_barang = [
     "Minyak Goreng" => 28000
 ];
 
+// Membuat kode unik untuk tiap barang
+$kode_barang = [
+    "Sabun" => "BR001",
+    "Sampo" => "BR002",
+    "Odol" => "BR003",
+    "Teh" => "BR004",
+    "Kopi" => "BR005",
+    "Susu" => "BR006",
+    "Mie Instan" => "BR007",
+    "Gula" => "BR008",
+    "Beras" => "BR009",
+    "Minyak Goreng" => "BR010"
+];
+
 // Cetak header struk
 echo "<div class='header'>";
 echo "<h2>===POLGAN MART===</h2>";
@@ -115,6 +130,7 @@ echo "</div>";
 $beli = [];
 $jumlah = [];
 $total = [];
+$kode = [];
 $grandtotal = 0;
 
 $keys = array_keys($nama_barang);
@@ -128,6 +144,7 @@ for ($i = 0; $i < $jumlah_produk; $i++) {
     $subtotal = $harga * $qty;
 
     $beli[] = $barang;
+    $kode[] = $kode_barang[$barang];
     $jumlah[] = $qty;
     $total[] = $subtotal;
     $grandtotal += $subtotal;
@@ -137,6 +154,7 @@ for ($i = 0; $i < $jumlah_produk; $i++) {
 echo "<table>";
 echo "<tr>
         <td><b>Barang</b></td>
+         <td class='center'><b>Kode</b></td>
         <td class='center'><b>Qty</b></td>
         <td class='right'><b>Harga</b></td>
         <td class='right'><b>Total</b></td>
@@ -146,6 +164,7 @@ foreach ($beli as $i => $barang) {
     $harga = $nama_barang[$barang];
     echo "<tr>
             <td>$barang</td>
+            <td class='center'>{$kode[$i]}</td>
             <td class='center'>{$jumlah[$i]}</td>
             <td class='right'>
                 <div class='rupiah'>
@@ -163,8 +182,8 @@ foreach ($beli as $i => $barang) {
 }
 
 /*Output akhir*/
-echo "<tr class='total'>
-        <td colspan='3'>TOTAL BELANJA</td>
+echo"<tr class='total'>
+        <td colspan='4'>TOTAL BELANJA</td>
         <td class='right'>
             <div class='rupiah'>
                 <span>Rp</span>
