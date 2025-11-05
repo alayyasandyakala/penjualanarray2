@@ -32,11 +32,33 @@
     }
 
     td {
-        padding: 3px 0;
+        padding: 4px 3px;
+        vertical-align: top;
     }
 
     .right {
         text-align: right;
+    }
+
+    .right {
+        text-align: center;
+    }
+
+    /* Lebar kolom agar sejajar */
+    td:nth-child(1) { width: 40%; } /* Nama barang */
+    td:nth-child(2) { width: 15%; } /* Qty */
+    td:nth-child(3) { width: 15%; } /* Harga */
+    td:nth-child(4) { width: 30%; } /* Total */
+
+    /* Tambahan untuk merapikan posisi Rp */
+    .rupiah {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .rupiah span:first-child {
+        min-width: 25px; /* agar "Rp" sejajar */
+        text-align: left;
     }
 
     .total {
@@ -88,4 +110,26 @@ Sumatera Utara 20116<br>
 Politeknik Teknik Ganesha Medan</p>";
 echo "<p>Tanggal: " . date('d/m/Y H:i:s') . "</p>";
 echo "</div>";
+
+/*Logika pembelian*/
+$beli = [];
+$jumlah = [];
+$total = [];
+$grandtotal = 0;
+
+$keys = array_keys($nama_barang);
+shuffle($keys);
+$jumlah_produk = rand(3, 6);
+
+for ($i = 0; $i < $jumlah_produk; $i++) {
+    $barang = $keys[$i];
+    $harga = $nama_barang[$barang];
+    $qty = rand(1, 5);
+    $subtotal = $harga * $qty;
+
+    $beli[] = $barang;
+    $jumlah[] = $qty;
+    $total[] = $subtotal;
+    $grandtotal += $subtotal;
+}
 ?>
