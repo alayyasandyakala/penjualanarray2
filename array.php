@@ -221,6 +221,41 @@ echo "<tr class='total'>
         </td>
       </tr>";
 
+     // Total setelah diskon
+echo "<tr class='total'>
+        <td colspan='4'><b>Total Pembayaran</b></td>
+        <td class='right'>
+            <div class='rupiah'>
+                <span>Rp</span>
+                <span>" . number_format($total_setelah_diskon, 0, ',', '.') . "</span>
+            </div>
+        </td>
+      </tr>";
+
+      // 💵 Tambahan: uang bayar dan kembalian
+$uang_bayar = $total_setelah_diskon + rand(10000, 50000); // simulasi pelanggan bayar lebih
+$kembalian = $uang_bayar - $total_setelah_diskon;
+
+echo "<tr>
+        <td colspan='4'><b>Uang Bayar</b></td>
+        <td class='right'>
+            <div class='rupiah'>
+                <span>Rp</span>
+                <span>" . number_format($uang_bayar, 0, ',', '.') . "</span>
+            </div>
+        </td>
+      </tr>";
+
+echo "<tr>
+        <td colspan='4'><b>Kembalian</b></td>
+        <td class='right'>
+            <div class='rupiah'>
+                <span>Rp</span>
+                <span>" . number_format($kembalian, 0, ',', '.') . "</span>
+            </div>
+        </td>
+      </tr>";
+
 echo "</table>";
 
 echo "<div class='footer'>
