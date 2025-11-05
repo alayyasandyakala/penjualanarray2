@@ -132,4 +132,33 @@ for ($i = 0; $i < $jumlah_produk; $i++) {
     $total[] = $subtotal;
     $grandtotal += $subtotal;
 }
+
+/*Perhitungan total*/
+echo "<table>";
+echo "<tr>
+        <td><b>Barang</b></td>
+        <td class='center'><b>Qty</b></td>
+        <td class='right'><b>Harga</b></td>
+        <td class='right'><b>Total</b></td>
+      </tr>";
+
+foreach ($beli as $i => $barang) {
+    $harga = $nama_barang[$barang];
+    echo "<tr>
+            <td>$barang</td>
+            <td class='center'>{$jumlah[$i]}</td>
+            <td class='right'>
+                <div class='rupiah'>
+                    <span>Rp</span>
+                    <span>" . number_format($harga, 0, ',', '.') . "</span>
+                </div>
+            </td>
+            <td class='right'>
+                <div class='rupiah'>
+                    <span>Rp</span>
+                    <span>" . number_format($total[$i], 0, ',', '.') . "</span>
+                </div>
+            </td>
+          </tr>";
+}
 ?>
