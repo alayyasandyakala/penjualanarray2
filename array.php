@@ -64,8 +64,16 @@
 
     .total {
         border-top: 1px dashed black;
-        font-weight: bold;
         padding-top: 5px;
+    }
+
+    .total td:first-child,
+    .total td[colspan='4'] {
+        font-weight: bold;
+    }
+
+    .total .rupiah span:last-child {
+        font-weight: normal;
     }
 
     .header, .footer {
@@ -191,6 +199,28 @@ echo"<tr class='total'>
             </div>
         </td>
       </tr>";
+      if ($grandtotal <= 50000) {
+    $diskon_persen = 5;
+} elseif ($grandtotal > 50000 && $grandtotal <= 100000) {
+    $diskon_persen = 10;
+} else {
+    $diskon_persen = 20;
+}
+
+$nilai_diskon = ($grandtotal * $diskon_persen) / 100;
+$total_setelah_diskon = $grandtotal - $nilai_diskon;
+
+// Tampilkan baris diskon
+echo "<tr class='total'>
+        <td colspan='4' ><b>Diskon ({$diskon_persen}%)</b></td>
+        <td class='right'>
+            <div class='rupiah'>
+                <span>-Rp</span>
+                <span>" . number_format($nilai_diskon, 0, ',', '.') . "</span>
+            </div>
+        </td>
+      </tr>";
+
 echo "</table>";
 
 echo "<div class='footer'>
