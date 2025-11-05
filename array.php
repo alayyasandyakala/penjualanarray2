@@ -161,4 +161,26 @@ foreach ($beli as $i => $barang) {
             </td>
           </tr>";
 }
+
+/*Output akhir*/
+echo "<tr class='total'>
+        <td colspan='3'>TOTAL BELANJA</td>
+        <td class='right'>
+            <div class='rupiah'>
+                <span>Rp</span>
+                <span>" . number_format($grandtotal, 0, ',', '.') . "</span>
+            </div>
+        </td>
+      </tr>";
+echo "</table>";
+
+echo "<div class='footer'>
+        <p>Terima kasih telah berbelanja di POLGAN MART!</p>
+        <p>Barang yang sudah dibeli tidak dapat dikembalikan.</p>
+        <p>~ Have a Nice Day ~</p>
+      </div>";
 ?>
+</div>
+
+</body>
+</html>
